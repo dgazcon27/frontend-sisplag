@@ -14,13 +14,13 @@
 <script>
 export default {
 
-  name: 'Header',
+	name:'Header',
 
-  data () {
-    return {
+	data() {
+		return {
 
-    }
-  }
+		}
+	}
 }
 </script>
 

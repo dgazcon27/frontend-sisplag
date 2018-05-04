@@ -3,33 +3,37 @@
 	<div id="wrapper">
 		<div id="main">
 			<div class="inner">
-				<Header/>
+				<sp-header/>
+				<sp-uploadFile/>
 			</div>
 		</div>
-		<Sidebar/>
+		<sp-sidebar/>
+		
 	</div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import Sidebar from './components/Sidebar.vue'
+import SpHeader from './components/Header.vue'
+import SpSidebar from './components/Sidebar.vue'
+import SpUploadFile from './components/UploadFile.vue'
 
 export default {
-  name: 'app',
-  components: {
-  	Header,
-  	Sidebar
-  }
+	name:'app',
+		components: {
+		SpHeader,
+		SpSidebar,
+		SpUploadFile
+	}
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+	font-family: 'Avenir', Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-align: center;
+	color: #2c3e50;
+	margin-top: 60px;
 }
 </style>
