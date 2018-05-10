@@ -21,6 +21,25 @@
 					</p>
 				</div>
 			</form>
+			<div v-if="isSuccess">
+				<h2>Uploaded {{ uploadedFiles.length }} file(s) successfully.</h2>
+				<p>
+					<a href="javascript:void(0)" @click="reset()">Upload again</a>
+				</p>
+				<ul class="list-unstyled">
+					<li v-for="item in uploadedFiles">
+					<img :src="item.url" class="img-responsive img-thumbnail" :alt="item.originalName">
+					</li>
+				</ul>
+			</div>
+			<!--FAILED-->
+			<div v-if="isFailed">
+				<h2>Uploaded failed.</h2>
+				<p>
+					<a href="javascript:void(0)" @click="reset()">Try again</a>
+				</p>
+				<pre>{{ uploadError }}</pre>
+			</div>
 		</div>
 	</section>
 </template>
@@ -79,21 +98,17 @@ export default {
 			})
 		},
 		filesChange(fieldName, fileList) {
-			this.file = this.$refs.file.files[0];
-			let formData = new FormData();
-			formData.append('file', this.file)
 			// handle file changes
-			// var formData = new FormData()
+			var formData = new FormData()
 
-			// if (!fileList.length) return
+			if (!fileList.length) return
 
-			// // append the files to FormData
-			// Array
-			// .from(Array(fileList.length).keys())
-			// .map(x => {
-			// 	console.log(formData)
-			// 	formData.append(fieldName, fileList[x], fileList[x].name)
-			// })
+			// append the files to FormData
+			Array
+			.from(Array(fileList.length).keys())
+			.map(x => {
+				formData.append(fieldName, fileList[x], fileList[x].name)
+			})
 
 			// // save it
 			this.save(formData)
