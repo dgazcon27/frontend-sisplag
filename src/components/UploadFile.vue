@@ -28,16 +28,16 @@
 				</p>
 				<ul class="list-unstyled">
 					<li v-for="item in uploadedFiles">
-					<img :src="item.url" class="img-responsive img-thumbnail" :alt="item.originalName">
+						<img :src="item.url" class="img-responsive img-thumbnail" :alt="item.originalName">
 					</li>
 				</ul>
 			</div>
 			<!--FAILED-->
 			<div v-if="isFailed">
 				<h2>Uploaded failed.</h2>
-				<p>
-					<a href="javascript:void(0)" @click="reset()">Try again</a>
-				</p>
+					<p>
+						<a href="javascript:void(0)" @click="reset()">Try again</a>
+					</p>
 				<pre>{{ uploadError }}</pre>
 			</div>
 		</div>
@@ -99,19 +99,19 @@ export default {
 		},
 		filesChange(fieldName, fileList) {
 			// handle file changes
-			var formData = new FormData()
+			const formData = new FormData();
 
-			if (!fileList.length) return
+			if (!fileList.length) return;
 
 			// append the files to FormData
 			Array
 			.from(Array(fileList.length).keys())
 			.map(x => {
-				formData.append(fieldName, fileList[x], fileList[x].name)
-			})
+			formData.append(fieldName, fileList[x], fileList[x].name);
+			});
 
-			// // save it
-			this.save(formData)
+			// save it
+			this.save(formData);
 		}
 	},
 	mounted() {
