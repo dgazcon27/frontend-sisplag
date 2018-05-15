@@ -13,8 +13,8 @@
 					<h2>Menu</h2>
 				</header>
 				<ul>
-					<li><a href="index.html">Homepage</a></li>
-					<li><a href="generic.html">Generic</a></li>
+					<li><router-link to="/">Home</router-link></li>
+					<!-- <li><a href="generic.html">Generic</a></li>
 					<li><a href="elements.html">Elements</a></li>
 					<li>
 						<span class="opener">Submenu</span>
@@ -24,8 +24,8 @@
 							<li><a href="#">Tempus Magna</a></li>
 							<li><a href="#">Feugiat Veroeros</a></li>
 						</ul>
-					</li>
-					<li><a href="#">Etiam Dolore</a></li>
+					</li> -->
+					<!-- <li><a href="#">Etiam Dolore</a></li>
 					<li><a href="#">Adipiscing</a></li>
 					<li>
 						<span class="opener">Another Submenu</span>
@@ -37,8 +37,8 @@
 						</ul>
 					</li>
 					<li><a href="#">Maximus Erat</a></li>
-					<li><a href="#">Sapien Mauris</a></li>
-					<li><a href="#">Amet Lacinia</a></li>
+					<li><a href="#">Sapien Mauris</a></li> -->
+					<li><router-link to="about">About</router-link></li>
 				</ul>
 			</nav>
 
@@ -60,4 +60,5 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
 </style>
