@@ -9,7 +9,7 @@
 						:name="uploadFieldName" 
 						:disabled="isSaving" 
 						@change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length" 
-						accept="image/*"
+						accept=".pdf,.doc"
 						id="file" 
 						ref="file"
 						class="input-file">
@@ -58,7 +58,7 @@ export default {
 			uploadedFiles: [],
 			uploadError: null,
 			currentStatus: null,
-			uploadFieldName: 'photos',
+			uploadFieldName: 'document',
 			file: {}
 		}
 	},

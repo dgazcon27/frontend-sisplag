@@ -6,7 +6,17 @@
 
 
 export default {
-	name:'app'
+	name:'app',
+	data() {
+		return {
+			authenticated: false
+		}
+	},
+	beforeMount() {
+		if(!this.authenticated) {
+			this.$router.replace({ name: "login" });
+		}
+	}
 }
 </script>
 

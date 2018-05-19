@@ -12,7 +12,7 @@
 					<input v-model="password" type="text" name="password" id="password" placeholder="Contraseña" />
 				</div>
 				<div>
-					<button  class="btn btn-primary">Ingresar</button>
+					<button @click="login" class="btn btn-primary">Ingresar</button>
 				</div>
 			</form>
 			<footer>
@@ -37,7 +37,8 @@
 
 <script>
 import 'bootstrap'
-
+import userService from '../services/userServices'
+import {mapMutations} from 'vuex'
 
 export default {
 
@@ -45,8 +46,27 @@ export default {
 
 	data () {
 		return {
-			password:'1234',
-			email:'daniel.gazcon27@gmail.com'
+			password:'daniel',
+			email:'daniel@correo.co'
+		}
+	},
+	methods: {
+		... mapMutations(['setToken']),
+		login(e) {
+			e.preventDefault()
+			if (this.password.trim() == 0 || this.email.trim() == 0) {
+				console.log('campos requeridos')
+			} else {
+				var form = {}
+				form.email = this.email
+				form.password = this.password
+				userService.login(form)
+				.then(res => {
+					this.$router.replace({ name: "home" })
+					this.setToken(res)
+				})
+				.catch(err=> {console.log(err)})
+			}
 		}
 	}
 }
