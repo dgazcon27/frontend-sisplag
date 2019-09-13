@@ -40,6 +40,9 @@
 					</p>
 				<pre>{{ uploadError }}</pre>
 			</div>
+			<div v-if="isSaving" class="loader">
+				<img src="../assets/loader.gif">
+			</div>
 		</div>
 	</section>
 </template>
@@ -148,5 +151,10 @@ export default {
 		font-size: 1.2em;
 		text-align: center;
 		padding: 50px 0;
+	}
+
+	.loader {
+	    margin: auto;
+    	width: 22%;
 	}
 </style>

@@ -6,13 +6,16 @@
 			<h2>Log In</h2>
 			<form method="post" action="#">
 				<div class="field">
-					<input v-model="email" type="email" name="email" id="email" placeholder="Correo" />
+					<input v-model="username" type="email" name="username" id="username" placeholder="Correo" />
 				</div>
 				<div class="field">
 					<input v-model="password" type="text" name="password" id="password" placeholder="Contraseña" />
 				</div>
 				<div>
 					<button @click="login" class="btn btn-primary">Ingresar</button>
+				</div>
+				<div v-if="isError">
+					<p>Todos los campos son requeridos</p>
 				</div>
 			</form>
 			<footer>
@@ -46,26 +49,27 @@ export default {
 
 	data () {
 		return {
-			password:'daniel',
-			email:'daniel@correo.co'
+			password:'dgazcon27',
+			username:'dgazcon',
+			isError: false
 		}
 	},
 	methods: {
 		... mapMutations(['setToken']),
 		login(e) {
 			e.preventDefault()
-			if (this.password.trim() == 0 || this.email.trim() == 0) {
-				console.log('campos requeridos')
+			if (this.password.trim() == 0 || this.username.trim() == 0) {
+				this.isError = true
 			} else {
 				var form = {}
-				form.email = this.email
+				form.username = this.username
 				form.password = this.password
 				userService.login(form)
 				.then(res => {
 					this.$router.replace({ name: "home" })
 					this.setToken(res)
 				})
-				.catch(err=> {console.log(err)})
+				.catch()
 			}
 		}
 	}

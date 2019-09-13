@@ -9,7 +9,7 @@ userServices.login = function(formData) {
     return axios.post(url, formData)
         // get data
         .then(x => x.data)
-        .catch(e => {console.log(e)})
+        .catch()
 }
 
 
