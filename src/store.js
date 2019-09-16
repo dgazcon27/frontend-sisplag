@@ -6,12 +6,14 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
 	state: {
 		token:'',
-		timeStamp:0
+		timeStamp:0,
+		userId: -1
 	},
 	mutations: {
 		setToken(state, data) {
 			state.token = data.id
 			state.timeStamp = data.ttl
+			state.userId = data.userId
 		}
 	}
 })

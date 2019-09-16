@@ -9,7 +9,7 @@
 					<input v-model="username" type="email" name="username" id="username" placeholder="Correo" />
 				</div>
 				<div class="field">
-					<input v-model="password" type="text" name="password" id="password" placeholder="Contraseña" />
+					<input v-model="password" type="password" name="password" id="password" placeholder="Contraseña" />
 				</div>
 				<div>
 					<button @click="login" class="btn btn-primary">Ingresar</button>
@@ -42,6 +42,7 @@
 import 'bootstrap'
 import userService from '../services/userServices'
 import {mapMutations} from 'vuex'
+import dateMixin from '../mixins/dateMixin';
 
 export default {
 
@@ -54,6 +55,7 @@ export default {
 			isError: false
 		}
 	},
+	mixins:[dateMixin],
 	methods: {
 		... mapMutations(['setToken']),
 		login(e) {
@@ -66,13 +68,25 @@ export default {
 				form.password = this.password
 				userService.login(form)
 				.then(res => {
-					this.$router.replace({ name: "home" })
 					this.setToken(res)
+					localStorage.setItem('id', res.id)
+					localStorage.setItem('ttl', res.ttl)
+					localStorage.setItem('userId', res.userId)
+					localStorage.setItem('created', new Date())
+					this.$router.replace({ name: "home" })
 				})
 				.catch()
 			}
 		}
+	},
+	beforeMount() {
+		if (localStorage.getItem('id')) {
+			this.setToken(localStorage);
+			this.$router.replace({ name: "home" });
+		}
+
 	}
+
 }
 </script>
 

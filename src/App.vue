@@ -13,9 +13,9 @@ export default {
 		}
 	},
 	beforeMount() {
-		// if(!this.authenticated) {
-		// 	this.$router.replace({ name: "login" });
-		// }
+		if(!this.authenticated) {
+			this.$router.replace({ name: "login" });
+		}
 	}
 }
 </script>

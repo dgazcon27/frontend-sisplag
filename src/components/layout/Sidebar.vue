@@ -13,7 +13,8 @@
 					<h2>Menu</h2>
 				</header>
 				<ul>
-					<li><router-link to="/">Home</router-link></li>
+					<li><router-link to="/">Documentos</router-link></li>
+					<li><router-link to="/upload">Cargar Archivo</router-link></li>
 					<!-- <li><a href="generic.html">Generic</a></li>
 					<li><a href="elements.html">Elements</a></li>
 					<li>

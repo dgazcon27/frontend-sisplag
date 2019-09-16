@@ -62,7 +62,8 @@ export default {
 			uploadError: null,
 			currentStatus: null,
 			uploadFieldName: 'document',
-			file: {}
+			file: {},
+			userId: -1
 		}
 	},
 	computed: {
@@ -89,8 +90,7 @@ export default {
 		save(formData) {
 			// upload data to the server
 			this.currentStatus = STATUS_SAVING
-
-			fileServices.upload(formData)
+			fileServices.upload(formData, this.userId)
 			.then(x => {
 				this.uploadedFiles = [].concat(x)
 				this.currentStatus = STATUS_SUCCESS
@@ -112,7 +112,6 @@ export default {
 			.map(x => {
 			formData.append(fieldName, fileList[x], fileList[x].name);
 			});
-
 			// save it
 			this.save(formData);
 		}
@@ -120,6 +119,10 @@ export default {
 	mounted() {
 		this.reset()
     },
+    beforeMount() {
+    	this.userId = this.$store.state.userId;
+    	console.log(this.userId)
+    }
 }
 </script>
 
