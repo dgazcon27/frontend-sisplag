@@ -2,11 +2,9 @@
 	<div id="wrapper">
 		<div id="main">
 			<div class="inner">
-				<sp-header/>
 				<sp-upload-file/>
 			</div>
 		</div>
-		<sp-sidebar/>
 		
 	</div>
 </template>

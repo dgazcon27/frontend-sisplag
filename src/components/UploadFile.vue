@@ -2,7 +2,7 @@
 	<section id="banner">
 		<div class="content">
 			<form enctype="multipart/form-data" novalidate v-if="isInitial || isSaving">
-				<h1>Upload images</h1>
+				<h1>Cargar archivo</h1>
 				<div class="dropbox">
 					<input 
 						type="file" 
@@ -14,17 +14,17 @@
 						ref="file"
 						class="input-file">
 					<p v-if="isInitial">
-					Drag your file(s) here to begin<br> or click to browse
+						Arrastrar y dejar tu archivo<br> o click para abrir carpeta
 					</p>
 					<p v-if="isSaving">
-					Uploading {{ fileCount }} files...
+						Cargando {{ fileCount }} archivo...
 					</p>
 				</div>
 			</form>
 			<div v-if="isSuccess">
-				<h2>Uploaded {{ uploadedFiles.length }} file(s) successfully.</h2>
+				<h2>Archivo subido exitosamente.</h2>
 				<p>
-					<a href="javascript:void(0)" @click="reset()">Upload again</a>
+					<a href="javascript:void(0)" @click="reset()">Subir un nuevo archivo</a>
 				</p>
 				<ul class="list-unstyled">
 					<!-- <li v-for="item in uploadedFiles">
@@ -34,9 +34,9 @@
 			</div>
 			<!--FAILED-->
 			<div v-if="isFailed">
-				<h2>Uploaded failed.</h2>
+				<h2>Error de carga.</h2>
 					<p>
-						<a href="javascript:void(0)" @click="reset()">Try again</a>
+						<a href="javascript:void(0)" @click="reset()">Intentar nuevamente</a>
 					</p>
 				<pre>{{ uploadError }}</pre>
 			</div>
@@ -65,6 +65,11 @@ export default {
 			file: {},
 			userId: -1
 		}
+	},
+	created() {
+		this.$store.dispatch('changeHeader' ,{
+			name: 'Cargar Archivos'
+		})
 	},
 	computed: {
 		isInitial() {
@@ -118,11 +123,10 @@ export default {
 	},
 	mounted() {
 		this.reset()
-    },
-    beforeMount() {
-    	this.userId = this.$store.state.userId;
-    	console.log(this.userId)
-    }
+	},
+	beforeMount() {
+		this.userId = this.$store.state.userId;
+	}
 }
 </script>
 
@@ -157,7 +161,7 @@ export default {
 	}
 
 	.loader {
-	    margin: auto;
-    	width: 22%;
+		margin: auto;
+		width: 22%;
 	}
 </style>
